@@ -6,12 +6,15 @@ public class Book {
     private double price;
     private double discount = 0.0;
 
-    public void adjustPrice(double adjustment) {
-        this.price += adjustment;
+    public double adjustPrice(double adjustment) {
+        double adjustedPrice = this.price += adjustment;
+        return adjustedPrice;
     }
 
     public double priceAfterDiscount() {
-        return price - (price * discount);
+        double discountedAmount = this.price * this.discount;
+        double finalPrice = this.price - discountedAmount;
+        return finalPrice;
     }
 
     public boolean equals(Book other) {
@@ -52,6 +55,22 @@ public class Book {
 
     public double getDiscountedPrice() {
         return price - (price * discount);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setDiscount(double discountPercentage) {
+    this.discount = discountPercentage / 100.0;
     }
 
 }
