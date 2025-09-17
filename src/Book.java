@@ -4,7 +4,7 @@ public class Book {
     private String title;
     private double weight;
     private double price;
-    private double discount = 0.0;
+    private double discount;
 
     public double adjustPrice(double adjustment) {
         double adjustedPrice = this.price += adjustment;
@@ -29,6 +29,8 @@ public class Book {
         return "Title: " + title + ", Weight: " + weight + "Price: $" + price + ", Discount: " + discount;
     }
 
+
+     //Constructor to create a new Book.
     public Book(String title, double weight, double price, double discount) {
         this.title = title;
         this.weight = weight;
