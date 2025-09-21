@@ -4,10 +4,10 @@
 * Also includes methods to add books, adjust prices, and apply discounts.
 */
 public class Invoice {
-    String customerName;
-    Book[] books;
-    static final int MAX_BOOKS = 3;
-    static final double TAX_RATE = 4.5; 
+    private String customerName;
+    private Book[] books;
+    private static final int MAX_BOOKS = 3;
+    private static final double TAX_RATE = 4.5; 
 
 
     // Default constructor
@@ -83,12 +83,12 @@ public class Invoice {
         return output;
     }
 
-        // Method to calculate total amount of all books being purchased
+    // Method to calculate total amount of all books being purchased
     public double getTotalAmount() {
         double total = 0.0;
         for (Book book : books) {
             if (book != null) {
-                total += book.priceAfterDiscount();
+                total += book.getPrice();
             }
         }
         return total;
