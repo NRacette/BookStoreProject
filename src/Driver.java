@@ -3,7 +3,8 @@
  *
  * INPUT:
  * 		Constants:
- * 			MAXBOOKS define the most books a person can check out.
+ * 			MAXBOOKS define the most books a person can buy per invoice.
+ * 			TAXRATE define the tax rate for the total amount.
  * 		User input:
  * 			title of book
  * 			price of book
@@ -51,16 +52,14 @@ public class Driver {
         invoice2.applyDiscount(1, 10);
         invoice2.applyDiscount(2, 20);
 
+        // Adjust prices
         invoice1.adjustPrice(3, 2.00);
 
-        System.out.println("Invoices");
+        // Print out the invoices
+        System.out.println("================ INVOICES ================");
         System.out.println(invoice1.toString());
         System.out.println(invoice2.toString());
-
-        System.out.println("Invoices");
-        System.out.println(invoice1.toString());
-        System.out.println(invoice2.toString());
-        System.out.println("\n================ END OF PROGRAM ================");
+        System.out.println("================ END OF PROGRAM ================");
 
     }
 }

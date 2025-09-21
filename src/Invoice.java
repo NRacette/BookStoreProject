@@ -7,7 +7,7 @@ public class Invoice {
     String customerName;
     Book[] books;
     static final int MAX_BOOKS = 3;
-    static final double TAX_RATE = 7.5; 
+    static final double TAX_RATE = 4.5; 
 
 
     // Default constructor
@@ -20,39 +20,6 @@ public class Invoice {
     public Invoice(String customerName) {
         this.customerName = customerName;
         this.books = new Book[MAX_BOOKS]; // Create books array with 3 positions
-    }
-
-    // Method to calculate total amount of all books being purchased
-    public double getTotalAmount() {
-        double total = 0.0;
-        for (Book book : books) {
-            if (book != null) {
-                total += book.priceAfterDiscount();
-            }
-        }
-        return total;
-    }
-
-    // Method to calculate total discounted amount of all books being purchased
-    public double getDiscountedTotal() {
-        double discountedTotal = 0.0;
-        for (Book book : books) {
-            if (book != null) {
-                discountedTotal += book.getDiscountedPrice();
-            }
-        }
-        return discountedTotal;
-    }
-
-    // Method to calculate total weight of all books being purchased
-    public double getTotalWeight() {
-        double totalWeight = 0.0;
-        for (Book book : books) {
-            if (book != null) {
-                totalWeight += book.getWeight();
-            }
-        }
-        return totalWeight;
     }
 
     // Method to add a book to the invoice
@@ -84,7 +51,7 @@ public class Invoice {
         books[i].setDiscount(discount);
     }
     // Method to calculate tax on the total amount
-    public double calculateTax(double amount) {
+    public static double calculateTax(double amount) {
         double taxAmount = amount * (TAX_RATE / 100.0);
         return taxAmount;
     }
@@ -92,9 +59,11 @@ public class Invoice {
     // Override toString method to provide a string representation of the Invoice
     @Override
     public String toString() {
-        String output = "Customer: " + customerName + "\n\n";
+        String output = "";
+        output += "Customer: " + customerName + "\n\n";
         output += "Books Purchased:\n";
         
+        // Loop through books array add each books to output
         for (Book book : books) {
             if (book != null) {
                 output += book.toString() + "\n";
@@ -109,10 +78,44 @@ public class Invoice {
         output += String.format("Total Weight: %.2f lbs\n\n", getTotalWeight());
         output += String.format("Subtotal: $%.2f\n", totalBeforeDiscount);
         output += String.format("Subtotal Discounted: $%.2f\n", totalAfterDiscount);
-        output += String.format("Tax (%.1f%%): $%.2f\n", TAX_RATE, taxAmount);
+        output += String.format("Tax: $%.2f\n", taxAmount);
         output += String.format("TOTAL DUE: $%.2f\n", overallCost);
         return output;
     }
+
+        // Method to calculate total amount of all books being purchased
+    public double getTotalAmount() {
+        double total = 0.0;
+        for (Book book : books) {
+            if (book != null) {
+                total += book.priceAfterDiscount();
+            }
+        }
+        return total;
+    }
+
+    // Method to calculate total discounted amount of all books being purchased
+    public double getDiscountedTotal() {
+        double discountedTotal = 0.0;
+        for (Book book : books) {
+            if (book != null) {
+                discountedTotal += book.getDiscountedPrice();
+            }
+        }
+        return discountedTotal;
+    }
+
+    // Method to calculate total weight of all books being purchased
+    public double getTotalWeight() {
+        double totalWeight = 0.0;
+        for (Book book : books) {
+            if (book != null) {
+                totalWeight += book.getWeight();
+            }
+        }
+        return totalWeight;
+    }
+    
     //Customer Name getter method
     public String getCustomerName() {
         return customerName;
